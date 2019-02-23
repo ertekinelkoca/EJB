@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+
+
+	<title>ENVL Observation Page</title>
+	<link rel="icon" type="image/x-icon" href="adminfavicon.ico"/>
+	
+	<h1 align="center" style="color:#476b6b">Welcome Environment Listener Authorization Page</h1>
+	<hr style="color:#006666"/>
+	
+	
+	<style>
+
+
+	.text{text-align: center; font-weight: bold;}
+	.mar{margin-left: 5px;}
+	.mar1{margin-left: 10px;}
+	.mar2{margin-left: 20px;}
+	.mar3{margin-left: 30px;}
+	.mar4{margin-left: 35px;}
+	.mar6{margin-left: 70px;}
+	.mar10{margin-left: 130px;}
+	
+	.bg { 
+    /* The image used */
+    background-image: url("adminworld.png");
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position:relative;
+}
+	
+</style>
+	
+</h:head> 
+<body class="bg"> 
+<h:form>
+<br /><div align="center"><p:commandButton  action="#{loginBean.logOut()}" value="#{loginBean.email} Click To Logout "/></div>
+<br/>
+<h2 align="center"  style="color:#476b6b">The Table Below Shows That Deactivated Accounts Which Are Waiting For <a style="color:#0066ff;">Activation</a> Or <a style="color:#660000;">Rejection</a></h2>
+<br/>
+<p:poll interval="1" update="statusauthorized"/>
+<p:dataTable id="statusauthorized" var="user" value="#{registerBean.statusAuthorization()}" style="text-align:center;">
+    <p:column headerText="UserId" style="width:75px;">
+        <h:outputText value="#{user.id}" />
+    </p:column>
+ 
+    <p:column headerText="Name">
+        <h:outputText value="#{user.name}" />
+    </p:column>
+ 
+    <p:column headerText="LastName">
+        <h:outputText value="#{user.lastName}" />
+    </p:column>
+ 
+    <p:column headerText="Email" style="width:300px;">
+        <h:outputText value="#{user.email}" />
+    </p:column>
+    <p:column headerText="Role" style="width:100px;">
+        <h:outputText value="#{user.roleName}" />
+    </p:column>
+    <p:column headerText="Status" style="width:100px;">
+        <h:outputText value="#{user.status}" />
+    </p:column>
+     <p:column headerText="Operation" style="width:150px;">
+        <p:commandButton  value="Activate"  action="#{registerBean.userApproval(user)}" />
+    </p:column>
+    <p:column headerText="Operation" style="width:150px;">
+        <p:commandButton  value="Role Change"  action="#{registerBean.userRoleChange(user)}" />
+    </p:column>
+    <p:column headerText="Operation" style="width:150px;">
+        <p:commandButton  value="Reject"  action="#{registerBean.userRejection(user)}" />
+    </p:column>
+    
+</p:dataTable>
+<br/>
+<h2 align="center"  style="color:#476b6b">The Table Below Shows That Users Whose Account Can Be <a style="color:#660000;">Deactivated</a></h2>
+<br/>
+<p:poll interval="1" update="statusunauthorized"/>
+<p:dataTable id="statusunauthorized" var="user" value="#{registerBean.statusUnauthorization()}" style="text-align:center;">
+    <p:column headerText="UserId" style="width:75px;">
+        <h:outputText value="#{user.id}" />
+    </p:column>
+ 
+    <p:column headerText="Name">
+        <h:outputText value="#{user.name}" />
+    </p:column>
+ 
+    <p:column headerText="LastName">
+        <h:outputText value="#{user.lastName}" />
+    </p:column>
+ 
+    <p:column headerText="Email" style="width:300px;">
+        <h:outputText value="#{user.email}" />
+    </p:column>
+    <p:column headerText="Role" style="width:100px;">
+        <h:outputText value="#{user.roleName}" />
+    </p:column>
+    <p:column headerText="Status" style="width:100px;">
+        <h:outputText value="#{user.status}" />
+    </p:column>
+    <p:column headerText="Operation" style="width:150px;">
+        <p:commandButton  value="Deactivate"  action="#{registerBean.userDeactivation(user)}" />
+    </p:column>
+    <p:column headerText="Operation" style="width:150px;">
+        <p:commandButton  value="Role Change"  action="#{registerBean.userRoleChange(user)}" />
+    </p:column>
+    <p:column headerText="Operation" style="width:150px;">
+        <p:commandButton  value="Reject"  action="#{registerBean.userRejection(user)}" />
+    </p:column>
+    
+</p:dataTable>
+<br/><br/><br/><br/><br/>
+<div align="center" class="footer">
+ 	 <p style="color:orange;font-size:120%; font-weight: bold;">AEE 2018 &trade;</p>
+</div>
+</h:form>
+</body> 
+</html>

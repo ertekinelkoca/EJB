@@ -1,0 +1,16 @@
+<datasources>
+	<datasource jndi-name="java:/environmentlistenerPool" pool-name="asds-pool"
+		enabled="true" use-ccm="false">
+		<connection-url>jdbc:mysql://localhost/environmentlistener?characterEncoding=UTF8</connection-url>
+		<driver>mysql</driver>
+		<pool>
+			<min-pool-size>2</min-pool-size>
+			<max-pool-size>10</max-pool-size>
+			<prefill>true</prefill>
+		</pool>		
+		<security>
+			<user-name>root</user-name>
+			<password>root</password>
+		</security>
+	</datasource>
+</datasources>

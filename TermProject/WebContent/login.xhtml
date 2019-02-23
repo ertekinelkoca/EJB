@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+
+	<title>ENVL Login Page</title>
+	<link rel="icon" type="image/x-icon" href="resources/images/favicon.ico"/>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+	
+	
+
+<style>
+
+	.text{text-align: center; font-weight: bold;}
+	.mar{margin-left: 5px;}
+	.mar1{margin-left: 10px;}
+	.mar2{margin-left: 20px;}
+	.mar3{margin-left: 30px;}
+	.mar4{margin-left: 35px;}
+	.mar6{margin-left: 70px;}
+	.mar10{margin-left: 130px;}
+
+	.body, html {
+    height: 100%;
+}
+
+.center{
+
+    margin: 0 auto;
+
+}
+
+.bg { 
+    /* The image used */
+    background-image: url("resources/images/login.jpg");
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position:relative;
+}
+	
+</style>
+
+</h:head> 
+
+<h:body styleClass="bg"> 
+
+	<h1 align="center" style="color:orange;">Welcome Environment Listener Login Page</h1>
+	<h2 align="center"  style="color:orange;">To Login Please Enter Your Information</h2>
+	<hr style="color:#006666"/>
+
+<br/><br/><br/><br/><br/><br/><br/><br/>
+<hr style="color:#006666"/>
+<br/>
+<h:form>
+	<div>
+	<table align="center">
+		<tr>
+			<td style="color:#e699ff;font-size:130%;font-style:bold; text-decoration: underline; text-decoration-color: #e699ff" >
+			<b>
+				Email :
+			</b>
+			</td>
+			<td>
+				<p:inputText value="#{loginBean.email}" />
+			</td>
+		</tr>
+		<tr>
+			<td style="color:#e699ff;font-size:130%; font-style:bold; text-decoration: underline; text-decoration-color: #e699ff"><b>
+				Password :
+				</b>
+			</td>
+			<td>
+				 <p:password id="nonFeedback"  value="#{loginBean.password}" />
+			</td>
+		</tr>		
+	<tr>			
+	<td/><td>	
+   		<p:commandButton value="Login" action="#{loginBean.login()}" oncomplete="handleComplete(xhr, status, args)"/>
+	</td>		
+	</tr>
+	
+	</table>
+</div>
+
+</h:form>
+<br/>
+<hr style="color:#006666"/>
+<br /><br /><br /><br /><br /><br /><br/><br/>
+<div align="center">
+<h3 align="center" style="color:orange"><b>If you are not registered yet, please click to </b><a href="register.xhtml" style="color:#ff66ff" >register</a> </h3>
+</div>
+ <div align="center">
+  <p style="color:orange;font-size:120%; font-weight: bold;">AEE 2018 &trade;</p>
+</div>
+
+
+</h:body> 
+
+</html>

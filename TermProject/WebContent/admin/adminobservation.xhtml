@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+
+	<title>ENVL Observation Page</title>
+	<link rel="icon" type="image/x-icon" href="adminfavicon.ico"/>
+	
+	<h1 align="center" style="color:#476b6b">Welcome Environment Listener Observation Page</h1>
+	<h2 align="center"  style="color:#476b6b">Each Color In Palette In Indicator Represents <a style="color:#ff7b16;">10% For Instance 10&#8451;</a> </h2>
+	<h2 align="center"  style="color:#476b6b"><a style="color:#0066ff;">The Blue</a> Light Stands For Defined &#8451; Range And The <a style="color:#660000;">Red </a>Light Stands For Out Of Range !!!</h2>
+	<hr style="color:#006666"/>
+	
+	
+	<style>
+
+
+	.text{text-align: center; font-weight: bold;}
+	.mar{margin-left: 5px;}
+	.mar1{margin-left: 10px;}
+	.mar2{margin-left: 20px;}
+	.mar3{margin-left: 30px;}
+	.mar4{margin-left: 35px;}
+	.mar6{margin-left: 70px;}
+	.mar10{margin-left: 130px;}
+	
+	.bg { 
+    /* The image used */
+    background-image: url("adminworld.png");
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position:relative;
+}
+	
+</style>
+	
+
+</h:head> 
+
+
+<body class="bg ui-grid ui-grid-responsive"> 
+	<div align="center">
+	<h:form>
+	<p:poll interval="1" update="date"/>
+	<h:outputText id="date" value="#{showMeterBean.lastCondition.date}" style="color:#476b6b;font-weight: bold;font-size:130%;"/>
+	</h:form>
+	<br />
+	<h:form><div align="center"><p:commandButton value="#{loginBean.email} Click To Logout" action="#{loginBean.logOut()}"/></div></h:form>
+	</div>
+	<br />
+	
+
+	<div class="ui-grid ui-grid-responsive mar2">
+	    
+	<div class="ui-grid-col-4"> 
+		<h:panelGrid columns="1" cellpadding="5" cellspacing="5">
+  		<p:panel id="slide3" header="Temperature">
+  		<p:effect type="slide" event="dblclick" />
+  		<h:form>
+  		<p:poll interval="1" update="air" />
+		<p:poll interval="1" update="air1" />   
+    	<p:chart id="air"  type="metergauge" model="#{showMeterBean.meterGaugeModel1}" style="width:400px;height:250px" />	 
+    	<b class="mar6">Current Temperature : </b>
+        <h:outputText id="air1" styleClass="text" align="center"  value="#{showMeterBean.lastCondition.temperature}"/>&#8451;
+        </h:form>
+        	<div><h:form><br/>
+        <div align="center"><p:outputLabel style="color:orange;" >Temperature Warning Range</p:outputLabel></div><br/>
+      	
+      	<h:panelGrid columns="1" style="margin-bottom: 10px">
+      	<p:poll interval="1" update="displaySetRange" />
+       	<div align="center"><h:outputText id="displaySetRange" value="#{temperatureSetWarningRangeBean.getLastEditedRange()} Intended Safety Range Min : #{temperatureSetWarningRangeBean.intendedMin} and Max : #{temperatureSetWarningRangeBean.intendedmax}"   /></div><br/>
+       	<div align="center"><p:outputLabel id="displayRange" value="Set Intended Safety Range Min : #{temperatureSetWarningRangeBean.warningMinimumTemperatureLevel} and Max : #{temperatureSetWarningRangeBean.warningMaximumTemperatureLevel}" /></div><br/>
+        <p:poll interval="1" update="displayEditorName" />  
+        <div align="center"><p:outputLabel id="displayEditorName" value="Last Edit By : #{temperatureSetWarningRangeBean.lastTempEditor}" /></div><br/>
+        <div align="center"><p:slider for="txt6,txt7" display="displayRange" style="width: 400px" range="true" displayTemplate="Between {min} and {max}" /></div><br/>
+    	</h:panelGrid>
+    	<h:inputHidden id="txt6" value="#{temperatureSetWarningRangeBean.warningMinimumTemperatureLevel}" />
+    	<h:inputHidden id="txt7" value="#{temperatureSetWarningRangeBean.warningMaximumTemperatureLevel}" />
+    	<div align="center"><p:commandButton value="Set" action="#{temperatureSetWarningRangeBean.setMinMaxWarningLevel()}"/></div><br/>
+    	      
+ 			</h:form> </div>
+   		</p:panel>
+   		</h:panelGrid>
+   	</div>
+    
+    <div class="ui-grid-col-4">
+    <h:panelGrid columns="1" cellpadding="5" cellspacing="5">
+    <p:panel id="slide4" header="Humidity">
+        <p:effect type="slide" event="dblclick" />
+        <h:form>
+        <p:poll interval="1" update="air2" />
+		<p:poll interval="1" update="air3" />
+    	<p:chart id="air2"  type="metergauge" model="#{showMeterBean.meterGaugeModel2}" style="width:400px;height:250px" />
+    	<b class="mar6">Current Humidity : </b> 
+    	<h:outputText id="air3" styleClass="text" align="center"  value="#{showMeterBean.lastCondition.humidity}"/>%
+        </h:form>
+    </p:panel>
+    </h:panelGrid>
+    </div>
+	
+	<div class="ui-grid-col-4"> 
+	<h:panelGrid columns="1" cellpadding="5" cellspacing="5">        
+	<p:panel id="slide5" header="Pressure">
+        <p:effect type="slide" event="dblclick" />
+        <h:form>
+        <p:poll interval="1" update="air4" />
+		<p:poll interval="1" update="air5" />
+    	<p:chart id="air4"  type="metergauge" model="#{showMeterBean.meterGaugeModel3}" style="width:400px;height:250px" />
+    	<b class="mar6">Current Pressure : </b>  
+    	<h:outputText align="center" id="air5" styleClass="text" value="#{showMeterBean.lastCondition.pressure}"/> Mbar    
+        </h:form>
+    </p:panel>
+     </h:panelGrid>
+     </div>
+	</div>
+ <br/>
+ 
+
+ 
+<br/> 
+<h3 style="margin-top:0;color:#800080;font-size:120%;" align="center">!! To Refresh Graphs Please Click Them on Twice  !!</h3>
+ <br/>
+ 	
+<h:form>
+
+<p:poll interval="4" update="air9" />
+<p:chart id="air9" type="line" model="#{showLineChartBean.lineModel1}" style="height:300px"/>
+
+<br/>
+<hr style="color:#006666"/>
+<br/>
+<p:poll interval="4" update="air10" />
+<p:chart id="air10" type="line" model="#{showLineChartBean.lineModel2}" style="height:300px"/>
+
+<br/>
+<hr style="color:#006666"/>
+<br/>
+<p:poll interval="4" update="air11" />
+<p:chart id="air11" type="line" model="#{showLineChartBean.lineModel3}" style="height:300px"/>
+
+ </h:form>
+ <div align="center">
+  <p style="color:orange;font-size:120%; font-weight: bold;">AEE 2018 &trade;</p>
+</div>
+
+</body>
+ 
+</html>

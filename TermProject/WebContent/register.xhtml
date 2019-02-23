@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+
+	<title>ENVL Registration Page</title>
+	<link rel="icon" type="image/x-icon" href="resources/images/favicon.ico"/>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+
+<style>
+
+	.
+	.body, html {
+    height: 100%;
+}
+
+
+
+.bg { 
+    /* The image used */
+    background-image: url("resources/images/login.jpg");
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position:relative;
+}
+	
+</style>
+
+
+</h:head>
+
+
+<body  class="bg">
+<h1 align="center" style="color:orange;">Welcome Environment Listener Registration Page</h1>
+<h2 align="center"  style="color:orange;">To Register Please Enter Your Information</h2>
+<hr style="color:#006666"/>
+
+
+<h3 align="center"  style="color:#379964;">!!! Once The Registration Completed Succesfully  The Login Page Will Be Opened Automatically !!!</h3>
+<h3 align="center"  style="color:orange;">!!! After The Registration Completed Succesfully New Account Will Be Confirmed By Administration !!!</h3>
+<h3 align="center"  style="color:#e62e00;">!!! Please Note That Email Must Be Unique !!!</h3>
+
+<hr style="color:#006666"/>
+
+<h:form>
+<table align="center">
+	
+	<tr>
+		<td style="color:#e699ff; font-size:130%; font-style:bold; text-decoration: underline; text-decoration-color: #e699ff;">
+		<b>
+			Name :
+		</b>
+		</td>
+		<td>
+			<p:inputText value="#{registerBean.name}" required="true" requiredMessage="Value is required."/>
+		</td>
+	</tr>
+	<tr>
+		<td style="color:#e699ff;  font-size:130%; font-style:bold; text-decoration: underline; text-decoration-color: #e699ff;">
+		<b>
+			Lastname :
+		</b>
+		</td>
+		<td>
+			<p:inputText value="#{registerBean.lastname}" required="true" requiredMessage="Value is required."/>
+		</td>
+	</tr>
+	<tr>
+		
+		<td style="color:#e699ff;  font-size:130%; font-style:bold; text-decoration: underline; text-decoration-color: #e699ff;">
+		<b> 
+			Email :
+		</b>
+		</td>
+		<td>
+		
+			<p:inputText value="#{registerBean.email}" required="true" requiredMessage="Value is required."/>
+		</td>
+	</tr>
+	<tr>
+		<td  style="color:#e699ff;  font-size:130%; font-style:bold; text-decoration: underline; text-decoration-color: #e699ff;">
+		<b>
+			Password :
+		</b>
+		</td>
+		<td>
+			<p:password id="pwd1" value="#{registerBean.password}" match="pwd2" label="Password 1" required="true" requiredMessage="Value is required."/>
+		</td>
+	</tr>
+	<tr>
+		<td  style="color:#e699ff;  font-size:130%; font-style:bold; text-decoration: underline; text-decoration-color: #e699ff;">
+		<b>
+			Re-Password :
+		</b>
+		</td>
+		<td>
+			
+			<p:password id="pwd2" value="#{registerBean.password}" label="Password 2" required="true" />
+		</td>
+	</tr>
+	<tr>
+		
+		<td  style="color:#e699ff; font-size:130%; font-style:bold; text-decoration: underline; text-decoration-color: #e699ff;">
+		<b>Role :</b>
+		</td>
+		<td>
+		<p:selectOneMenu id="roleStatus" value="#{registerBean.roleName}">
+		<f:selectItem itemValue="user" itemLabel="User" />
+		<f:selectItem itemValue="admin" itemLabel="Admin"/>
+		</p:selectOneMenu>
+		 
+		</td>
+	</tr>
+	
+	<tr>	
+		<td/>
+			<td>
+			<p:commandButton value="Register" action="#{registerBean.register()}"/>
+		</td>
+			
+	</tr>
+	
+</table>
+</h:form>
+<br/><br/><br/>
+<h3 align="center" style="color:orange">If you are already registered, you can <a href="login.xhtml" style="color:#ff66ff">login</a> now</h3>
+ <div align="center">
+  <p style="color:orange;font-size:120%; font-weight: bold;">AEE 2018 &trade;</p>
+</div>
+ <p:messages id="messages" showDetail="true" autoUpdate="true" />
+</body>
+</html>

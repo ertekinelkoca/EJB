@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+
+	<title >ENVL Unauthorized Page</title>
+	<link rel="icon" type="image/x-icon" href="favicon.ico"/>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+	<style>
+
+
+	.
+	.body, html {
+    height: 100%;
+}
+
+
+
+.bg { 
+    /* The image used */
+    background-image: url("login.jpg");
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position:relative;
+    
+}
+	
+	
+	
+</style>
+
+</h:head> 
+<body class="bg"> 
+
+	<h1 align="center" style="color:orange;">Welcome Environment Listener Admin Authorization Page</h1>
+	
+	<h2 align="center" style="color:orange;">Links Below Are For Direction To Related Pages</h2>
+	<hr style="color:#006666"/>
+	<br/><br/>
+	<div align="center"><h:form><p:commandButton  action="#{loginBean.logOut()}" value="#{loginBean.email} Click To Logout"/></h:form></div>
+	<br/>
+	<div align="center">
+	<h2 align="center" style="color:orange"><b>To Direct To Authorization Page Please Click To </b><a href="adminauthorization.xhtml" style="color:#ff66ff" >  Authorize</a></h2>
+	</div>
+	
+	<br/><br/>
+	<div align="center">
+	<h2 align="center" style="color:orange"><b>To Direct To Admin Observation Page Please Click To </b><a href="adminobservation.xhtml" style="color:#b0e5cd" >Observe</a></h2>
+	<br/><br/>
+	<h2 align="center" style="color:orange"><b>To Direct To User Observation Page Please Click To </b><a href="/TermProject/user/userobservation.xhtml" style="color:#b0e5cd" > Observe</a></h2>
+	<br/><br/><br/>
+	<br/><br/><br/><br/>
+	
+	</div>
+	 <div align="center">
+ 	 <p style="color:orange;font-size:120%; font-weight: bold;">AEE 2018 &trade;</p>
+	</div>
+	<br/>
+	
+	
+
+</body> 
+</html>
+
