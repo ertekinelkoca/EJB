@@ -8,7 +8,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
 import edu.sabanciuniv.AliErtekinElkocaEnvironmentListener.business.EnvironmentListenerBusinessService;
 import edu.sabanciuniv.AliErtekinElkocaEnvironmentListener.business.EnvironmentListenerUserBusinessService;
 import edu.sabanciuniv.AliErtekinElkocaEnvironmentListener.domain.User;
@@ -26,7 +25,6 @@ public class EnvironmentListenerMobileLoginService {
 	@POST
 	@Path("/userregistration")
 	@Consumes("application/json")
-	@Produces(MediaType.APPLICATION_JSON)
 	public void userRegistration(@FormParam("name")String name,@FormParam("lastName")String lastName,@FormParam("email")String email,@FormParam("password")String password,@FormParam("roleName")String roleName){
 		
 		/*@FormParam("id")int id
