@@ -16,6 +16,11 @@ import edu.sabanciuniv.AliErtekinElkocaEnvironmentListener.domain.User;
 @Stateless
 public class EnvironmentListenerMobileLoginService {
 	
+	private String email;
+	private String password;
+	private String roleName;
+	private User user;
+	
 	@EJB
 	EnvironmentListenerBusinessService envlisbu;
 	
@@ -25,7 +30,11 @@ public class EnvironmentListenerMobileLoginService {
 	@POST
 	@Path("/userregistration")
 	@Consumes("application/json")
-	public void userRegistration(@FormParam("name")String name,@FormParam("lastName")String lastName,@FormParam("email")String email,@FormParam("password")String password,@FormParam("roleName")String roleName){
+	public void userRegistration(@FormParam("name")String name
+			,@FormParam("lastName")String lastName
+			,@FormParam("email")String email
+			,@FormParam("password")String password
+			,@FormParam("roleName")String roleName){
 		
 		/*@FormParam("id")int id
 		  @POST
@@ -37,14 +46,94 @@ public class EnvironmentListenerMobileLoginService {
   			order.setId(id);
   			order.setName(name);
   			return order;
-}
-		
-		
-		*/
+		}	
+*/
 		new User(name, lastName, email, password, roleName);
-		
 		
 	}
 	
+	@POST
+	@Path("/userlogin")
+	@Consumes("application/json")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String userLogin(@FormParam("email")String email ,@FormParam("password")String password)
+	
+	{
 
+		
+		user = envlisus.getUserWithRole(email,password);
+		
+		if(user==null)
+		{	
+
+			return "login";
+			
+		}	
+		
+		if(user.getRoleName().equals("admin")&& user.getStatus().equals("approved"))
+		{
+
+			return "admin";
+		} 
+		
+		else if(user.getRoleName().equals("user") && user.getStatus().equals("approved"))
+		{
+			 
+			return "user";	
+		}
+		
+		return "login";
+	
+	}
+
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public EnvironmentListenerBusinessService getEnvlisbu() {
+		return envlisbu;
+	}
+
+	public void setEnvlisbu(EnvironmentListenerBusinessService envlisbu) {
+		this.envlisbu = envlisbu;
+	}
+
+	public EnvironmentListenerUserBusinessService getEnvlisus() {
+		return envlisus;
+	}
+
+	public void setEnvlisus(EnvironmentListenerUserBusinessService envlisus) {
+		this.envlisus = envlisus;
+	}
+	
+	
 }
